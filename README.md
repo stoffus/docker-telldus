@@ -11,11 +11,8 @@ services:
   telldus:
     image: stoffus/telldus
     volumes:
-      - /etc/localtime:/etc/localtime:ro
       - ./tellstick.conf:/etc/tellstick.conf
-    ports:
-      - "50800:50800"
-      - "50801:50801"
+    network_mode: host
     devices:
       - /dev/bus/usb
 ```
