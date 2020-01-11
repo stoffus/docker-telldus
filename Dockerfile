@@ -1,4 +1,4 @@
-# Base it on Jessie to satisfy the libconfuse0 dependency
+# Based on Jessie to satisfy the libconfuse0 dependency
 FROM debian:8-slim
 
 # Install base packages
@@ -10,8 +10,9 @@ RUN apt-get update && apt-get install -y \
   libftdi1 \
   && rm -rf /var/lib/apt/lists/*
 
-RUN echo "deb http://download.telldus.com/debian/ stable main" >> /etc/apt/sources.list.d/telldus.list
-RUN wget -qO - http://download.telldus.com/debian/telldus-public.key | apt-key add -
+# Add telldus repo and public key
+RUN echo "deb http://download.telldus.com/debian/ stable main" >> /etc/apt/sources.list.d/telldus.list \
+  && wget -qO - http://download.telldus.com/debian/telldus-public.key | apt-key add -
 
 # Install telldus libraries and binaries
 RUN apt-get update \

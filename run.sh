@@ -1,4 +1,5 @@
 #!/bin/sh
+# Mostly borrowed from https://github.com/home-assistant/hassio-addons/tree/master/tellstick
 
 set -e
 
