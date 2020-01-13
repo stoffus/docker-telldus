@@ -1,6 +1,8 @@
 # Based on Jessie to satisfy the libconfuse0 dependency
 FROM debian:8-slim
 
+LABEL maintainer="stoffus@stoffus.com"
+
 # Install base packages
 RUN apt-get update && apt-get install -y \
   build-essential \
@@ -16,12 +18,13 @@ RUN echo "deb http://download.telldus.com/debian/ stable main" >> /etc/apt/sourc
 
 # Install telldus libraries and binaries
 RUN apt-get update \
-  && apt-get install -y libtelldus-core2 telldus-core \
+  && apt-get install -y \
+    libtelldus-core2 \
+    telldus-core \
   && rm -rf /var/lib/apt/lists/*
 
 COPY run.sh /
 
 CMD [ "/run.sh" ]
 
-EXPOSE 50800
-EXPOSE 50801
+EXPOSE 50800 50801
